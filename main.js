@@ -9,14 +9,13 @@ function generate(e){
     let data = e
     let graph = {
         x: [],
-        y: [],
-        type: 'scatter'
+        y: []
     }
     let iteration = 0
     while(data != 1){
         graph.x.push(iteration)
-        data = calc(data)
         graph.y.push(data)
+        data = calc(data)
         iteration++
         if(iteration == 1000){
             break
@@ -29,7 +28,9 @@ function generate(e){
 function genData(graph){
     let iterations = document.getElementById("iterations")
     let highest = document.getElementById("highest")
+    let initial = document.getElementById("initial")
     let highestnum = 0
+    initial.innerText = "Initial Value: "+graph.y[0]
     iterations.innerText = "Iterations: "+graph.x.length
     for(i in graph.y){
         if(graph.y[i] > highestnum) highestnum = graph.y[i]
